@@ -1,0 +1,74 @@
+[
+  {
+    "carId": 1,
+    "carName": "Toyota Corolla",
+    "providerName": "RentWheels Local",
+    "providerEmail": "contact@rentwheelslocal.com",
+    "pricePerDay": 49.99,
+    "rating": 4.7,
+    "availableQuantity": 10,
+    "description": "Reliable and fuel-efficient sedan, perfect for city drives and small trips.",
+    "pictureURL": "https://cdn.pixabay.com/photo/2013/07/13/12/28/toyota-159832_1280.jpg",
+    "subCategory": "Sedan"
+  },
+  {
+    "carId": 2,
+    "carName": "Honda CR-V",
+    "providerName": "Happy Rides",
+    "providerEmail": "sales@happyrides.com",
+    "pricePerDay": 65.0,
+    "rating": 4.8,
+    "availableQuantity": 7,
+    "description": "Spacious SUV with advanced safety features, ideal for family trips.",
+    "pictureURL": "https://cdn.pixabay.com/photo/2014/06/16/23/38/honda-368457_1280.jpg",
+    "subCategory": "SUV"
+  },
+  {
+    "carId": 3,
+    "carName": "Tesla Model 3",
+    "providerName": "Electric Wheels Co.",
+    "providerEmail": "info@electricwheels.com",
+    "pricePerDay": 120.0,
+    "rating": 4.9,
+    "availableQuantity": 5,
+    "description": "Electric sedan with autopilot feature and premium interior.",
+    "pictureURL": "https://cdn.pixabay.com/photo/2020/04/21/08/38/tesla-5078694_1280.jpg",
+    "subCategory": "Electric"
+  },
+  {
+    "carId": 4,
+    "carName": "Ford Mustang",
+    "providerName": "Speedy Rentals",
+    "providerEmail": "support@speedyrentals.com",
+    "pricePerDay": 150.0,
+    "rating": 4.6,
+    "availableQuantity": 3,
+    "description": "Classic sports car for thrill seekers, high performance and style.",
+    "pictureURL": "https://cdn.pixabay.com/photo/2015/01/19/13/51/ford-605427_1280.jpg",
+    "subCategory": "Luxury"
+  },
+  {
+    "carId": 5,
+    "carName": "Nissan Leaf",
+    "providerName": "EcoDrive",
+    "providerEmail": "info@ecodrive.com",
+    "pricePerDay": 80.0,
+    "rating": 4.5,
+    "availableQuantity": 8,
+    "description": "Compact electric car, ideal for city commutes with zero emissions.",
+    "pictureURL": "https://cdn.pixabay.com/photo/2019/07/17/12/17/nissan-leaf-4341266_1280.jpg",
+    "subCategory": "Electric"
+  },
+  {
+    "carId": 6,
+    "carName": "BMW X5",
+    "providerName": "Luxury Wheels",
+    "providerEmail": "orders@luxurywheels.com",
+    "pricePerDay": 200.0,
+    "rating": 4.8,
+    "availableQuantity": 2,
+    "description": "Premium SUV with top-notch comfort and advanced technology.",
+    "pictureURL": "https://cdn.pixabay.com/photo/2017/03/27/14/56/bmw-2179305_1280.jpg",
+    "subCategory": "Luxury"
+  }
+]
