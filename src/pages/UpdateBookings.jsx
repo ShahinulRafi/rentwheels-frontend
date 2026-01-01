@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 
 const UpdateBookings = () => {
@@ -8,14 +8,56 @@ const UpdateBookings = () => {
   const { id } = useParams();
   const [booking, setBooking] = useState();
   console.log(id);
+  const [category, setCategory] = useState(booking?.category);
+  const navigation = useNavigate();
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/myBookings/${id}`)
-      .then((res) => setBooking(res.data)); // asios e data property te response thake
+    axios.get(`http://localhost:5000/myBookings/${id}`).then((res) => {
+      setBooking(res.data); // asios e data property te response thake
+      setCategory(res.data.category);
+    });
   }, [id]);
 
+  // useEffect(() => {
+  // axios
+  //   .get(`http://localhost:5000/myBookings/${id}`)
+  //   .then((res) => setBooking(res.data)); // asios e data property te response thake
+  //     if(booking?.category){
+  //         setCategory(booking?.category);
+  //     }
+  // }, [id, booking?.category]);
+
   console.log(booking);
-  const handleUpdate = () => {};
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const category = form.category.value;
+    const price = parseInt(form.price.value);
+    const location = form.location.value;
+    const imageUrl = form.imageUrl.value;
+    const description = form.description.value;
+    const email = form.email.value;
+
+    const formData = {
+      name,
+      category,
+      price,
+      location,
+      imageUrl,
+      description,
+      email,
+    };
+
+    axios
+      .put(`http://localhost:5000/update/${id}`, formData)
+      .then((res) => {
+        console.log(res.data);
+        navigation("/myBookings");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
       <div className="w-full max-w-3xl bg-white rounded-xl shadow-md p-6 md:p-8">
@@ -31,6 +73,7 @@ const UpdateBookings = () => {
               Car Name
             </label>
             <input
+              defaultValue={booking?.name}
               type="text"
               name="name"
               required
@@ -45,6 +88,8 @@ const UpdateBookings = () => {
               Category
             </label>
             <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
               name="category"
               required
               className="w-full border rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
@@ -64,6 +109,7 @@ const UpdateBookings = () => {
               Rent Price (per day)
             </label>
             <input
+              defaultValue={booking?.price}
               type="number"
               name="price"
               required
@@ -78,6 +124,7 @@ const UpdateBookings = () => {
               Location
             </label>
             <input
+              defaultValue={booking?.location}
               type="text"
               name="location"
               required
@@ -92,6 +139,7 @@ const UpdateBookings = () => {
               Hosted Image URL
             </label>
             <input
+              defaultValue={booking?.imageUrl}
               type="url"
               name="imageUrl"
               required
@@ -106,6 +154,7 @@ const UpdateBookings = () => {
               Description
             </label>
             <textarea
+              defaultValue={booking?.description}
               rows="4"
               name="description"
               required
@@ -148,7 +197,7 @@ const UpdateBookings = () => {
               type="submit"
               className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition"
             >
-              Add Car
+              Update
             </button>
           </div>
         </form>

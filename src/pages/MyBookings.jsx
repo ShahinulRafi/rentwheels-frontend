@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import CarCard from "../components/FeaturedCars/CarCard";
 import { AuthContext } from "../contexts/AuthContext";
 import { Link } from "react-router";
+import axios from "axios";
 
 const MyBookings = () => {
   const [myBookings, setMyBookings] = useState([]);
@@ -15,6 +16,17 @@ const MyBookings = () => {
   }, [user?.email]);
 
   console.log(myBookings);
+
+  const handleDelete = (id ) => {
+    axios.delete(`http://localhost:5000/delete/${id}`)
+    .then(res => {
+      //update UI
+      const remaining = myBookings.filter(booking => booking._id !== id);
+      setMyBookings(remaining);
+      console.log(res.data);
+    })
+    .catch(err => console.error(err));
+  }
   return (
     <div className="flex flex-col items-center my-10 md:mx-20">
       <title>My Bookings</title>
@@ -70,7 +82,7 @@ const MyBookings = () => {
                 <td>{car?.price}</td>
                 <td className="flex gap-3">
                   <Link to={`/updateBookings/${car?._id}`}><button className="btn btn-primary btn-xs">Edit</button></Link>
-                  <button className="btn btn-error btn-xs">Delete</button>
+                  <button onClick={() => handleDelete(car?._id)} className="btn btn-error btn-xs">Delete</button>
                 </td>
               </tr>
             ))}
