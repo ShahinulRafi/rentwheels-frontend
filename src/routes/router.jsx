@@ -11,6 +11,7 @@ import AddCar from "../pages/AddCar";
 import BrowseCars from "../pages/BrowseCars";
 import MyBookings from "../pages/MyBookings";
 import CarDetails from "../pages/CarDetails";
+import UpdateBookings from "../pages/UpdateBookings";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "/mybookings",
         element: <MyBookings></MyBookings>,
+      },
+      {
+        path: "/updateBookings/:id",
+        element: <UpdateBookings></UpdateBookings>,
       },
       {
         path: "/*",
