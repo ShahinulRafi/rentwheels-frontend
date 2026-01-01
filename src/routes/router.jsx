@@ -12,6 +12,7 @@ import BrowseCars from "../pages/BrowseCars";
 import MyBookings from "../pages/MyBookings";
 import CarDetails from "../pages/CarDetails";
 import UpdateBookings from "../pages/UpdateBookings";
+import MyListing from "../pages/MyListing";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,12 +23,12 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/cardetails/:carId",
+        path: "/cardetails/:id",
         loader: async ({ params }) => {
           const res = await fetch("/allCars.json");
           const cars = await res.json();
 
-          const car = cars.find((c) => c.carId === parseInt(params.carId));
+          const car = cars.find((c) => c.carId === parseInt(params.id));
           return car;
         },
         element: (
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "/browsecars",
         element: <BrowseCars></BrowseCars>,
+      },
+      {
+        path: "/mylistings",
+        element: <MyListing></MyListing>,
       },
       {
         path: "/mybookings",

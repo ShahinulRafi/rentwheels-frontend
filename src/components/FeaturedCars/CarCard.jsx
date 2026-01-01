@@ -9,8 +9,8 @@ const CarCard = ({ car }) => {
       <div className="card bg-base-100 w-84 md:w-96 h-96 shadow-sm">
           <figure>
             <img
-              src={car.pictureURL}
-              alt={car.carName}
+              src={car.pictureUrl}
+              alt={car.name}
               className="w-full h-52"
             />
           </figure>
@@ -30,8 +30,8 @@ const CarCard = ({ car }) => {
               <div className="badge badge-outline">
                 Stock - {car.availableQuantity}
               </div>
-              <div className="badge badge-outline">Price - ${car.pricePerDay}</div>
-              <button className="btn badge badge-outline"><Link to={`/cardetails/${car.carId}`}>View More</Link></button>
+              <div className="badge badge-outline">Price - ${car.price}</div>
+              <button className="btn badge badge-outline"><Link to={`/cardetails/${car._id}`}>View More</Link></button>
             </div>
           </div>
         </div>
