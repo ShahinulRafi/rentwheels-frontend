@@ -1,23 +1,54 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import { AuthContext } from "../contexts/AuthContext";
+import axios from "axios";
 
 const CarDetails = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const [car, setCar] = useState({});
-  
+const {user} = useContext(AuthContext);
+console.log(user)
   useEffect(() => {
     fetch(`http://localhost:5000/myBookings/${id}`)
-    .then(res => res.json())
-    .then(data => setCar(data))
-  }, [id])
-  
-  const handleTryNow = (e) => {
-    e.preventDefault();
-    console.log(e.target.email.value, e.target.name.value);
-    toast.success("Thank you for trying the car!");
-  }
+      .then((res) => res.json())
+      .then((data) => setCar(data));
+  }, [id]);
 
+  // const handleTryNow = (e) => {
+  //   e.preventDefault();
+  //   console.log(e.target.email.value, e.target.name.value);
+  //   toast.success("Thank you for trying the car!");
+  // };
+
+  const handleBooking = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const renterName = form.renterName.value;
+    const renterEmail = form.renterEmail.value;
+    const renterPhone = form.renterPhone.value;
+    const carName = form.carName.value;
+    const price = form.price.value;
+
+    const booking = {
+      productId: id,
+      renterName,
+      renterEmail,
+      renterPhone,
+      carName,
+      price,
+      date: new Date()
+    };
+
+    console.log("current booking", booking);
+
+    axios.post("http://localhost:5000/bookings", booking)
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => console.error(err));
+
+  }
   return (
     <div className="max-w-6xl mx-auto p-6">
       <title>Car Details - RentWheels</title>
@@ -35,17 +66,29 @@ const CarDetails = () => {
 
         {/* Info Card */}
         <div className="md:w-1/2 bg-white p-6 rounded-xl shadow-lg space-y-4">
-          <p className="text-gray-600"><strong>Seller:</strong> {car.name}</p>
-          <p className="text-gray-600"><strong>Email:</strong> {car.email}</p>
-          <p className="text-gray-600"><strong>Price:</strong> ${car.price}</p>
-          <p className="text-gray-600"><strong>Rating:</strong> {car.rating} ⭐</p>
-          <p className="text-gray-600"><strong>Available Quantity:</strong> {car.availableQuantity}</p>
-          <p className="mt-4 text-gray-800"><strong>Description:</strong> {car.description}</p>
+          <p className="text-gray-600">
+            <strong>Seller:</strong> {car.name}
+          </p>
+          <p className="text-gray-600">
+            <strong>Email:</strong> {car.email}
+          </p>
+          <p className="text-gray-600">
+            <strong>Price:</strong> ${car.price}
+          </p>
+          <p className="text-gray-600">
+            <strong>Rating:</strong> {car.rating} ⭐
+          </p>
+          <p className="text-gray-600">
+            <strong>Available Quantity:</strong> {car.availableQuantity}
+          </p>
+          <p className="mt-4 text-gray-800">
+            <strong>Description:</strong> {car.description}
+          </p>
 
           {/* Try Now Form */}
           <div className="mt-6 p-4 bg-gray-50 rounded-lg shadow-inner">
             <h2 className="text-2xl font-semibold mb-4">Try This car</h2>
-            <form className="flex flex-col gap-4" onSubmit={handleTryNow}>
+            {/* <form className="flex flex-col gap-4" onSubmit={handleTryNow}>
               <input
                 type="text"
                 name="name"
@@ -64,7 +107,60 @@ const CarDetails = () => {
               >
                 Try Now
               </button>
-            </form>
+            </form> */}
+
+            {/* You can open the modal using document.getElementById('ID').showModal() method */}
+            <button
+              className="btn"
+              onClick={() => document.getElementById("my_modal_3").showModal()}
+            >
+              open modal
+            </button>
+            <dialog id="my_modal_3" className="modal">
+              <div className="modal-box">
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                    ✕
+                  </button>
+                </form>
+
+                <form onSubmit={handleBooking}  className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+                  <legend className="fieldset-legend">Order Details</legend>
+                  <label className="label">Car Name</label>
+                  <input name="carName" defaultValue={car?.name} readOnly type="text" className="input" placeholder="Car Name" />
+
+                  <label className="label">Renter Name</label>
+                  <input
+                    name="renterName"
+                  defaultValue={user.displayName}
+                    type="text"
+                    className="input"
+                    placeholder="Renter Name"
+                  />
+
+                  <label className="label">Renter Email</label>
+                  <input name="renterEmail" defaultValue={user?.email} readOnly type="email" className="input" placeholder="Email" />
+
+                  <label className="label">Price</label>
+                  <input name="price" defaultValue={car.price} readOnly type="number" className="input" placeholder="Price" />
+
+                  <label className="label">Phone</label>
+                  <input
+                   name="renterPhone"
+                    type="text"
+                    className="input"
+                    placeholder="Phone Number"
+                  />
+
+                  <button type='submit' className="btn btn-primary">Submit</button>
+                </form>
+                {/* <h3 className="font-bold text-lg">Rent this car</h3>
+                <p className="py-4">
+                  Press ESC key or click on ✕ button to close
+                </p> */}
+              </div>
+            </dialog>
           </div>
         </div>
       </div>

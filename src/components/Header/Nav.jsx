@@ -90,7 +90,7 @@ const Nav = () => {
                     <img
                       className="w-4 rounded"
                       title={user.displayName}
-                      src={user.photoURL}
+                      src={user.photoUrl}
                       alt=""
                     />
                   </div>
