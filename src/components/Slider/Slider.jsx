@@ -8,90 +8,74 @@ const Slider = () => {
         <h2 className="mx-10 text-3xl font-semibold text-center">
           Welcome to RentWheels!
         </h2>
-        <p className="mx-10 text-gray-600">Let it be your car dreams, or your inner adventurer, experience the thrill of hitting the road with RentWheels!</p>
-         <div className="flex justify-center m-10">
-    <button className="btn btn-secondary"><Link to="/browsecars">Browse Cars</Link></button>
-  </div>
+        <p className="mx-10 text-gray-600">
+          Let it be your car dreams, or your inner adventurer, experience the
+          thrill of hitting the road with RentWheels!
+        </p>
+        <div className="flex justify-center m-10">
+          <button className="btn btn-secondary">
+            <Link to="/browsecars">Browse Cars</Link>
+          </button>
+        </div>
       </div>
       <div className="md:mx-20 mx-10">
         <div className="carousel rounded-box">
-          
           <div className="carousel-item">
             <img
-              src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fHRveXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600"
-              alt="Burger"
-              className="w-80 h-110"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://images.unsplash.com/photo-1596068587619-e4b11c7a3488?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fHRveXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600"
+              src="https://media.istockphoto.com/id/490611277/photo/my-own-car-design.jpg?s=2048x2048&w=is&k=20&c=_0BBsID88CN9Bj3Q5fYLpZ9t_ZNVvz3Op1I7wCqu4aI="
               className="w-80 h-110"
               alt="Burger"
             />
           </div>
           <div className="carousel-item">
             <img
-              src="https://images.unsplash.com/photo-1546776230-bb86256870ce?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHRveXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600"
+              src="https://media.istockphoto.com/id/490611299/photo/my-own-car-design.jpg?s=2048x2048&w=is&k=20&c=7G4uGAxesJsBvjYYhWi9N9qRd2x_fXKlUHJ21le5bwQ="
               className="w-80 h-110"
               alt="Burger"
             />
           </div>
           <div className="carousel-item">
             <img
-              src="https://images.unsplash.com/photo-1543878636-41918458581d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHRveXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600"
+              src="https://media.istockphoto.com/id/1285466753/photo/gray-sportscar-front-view-isolated-on-white.jpg?s=2048x2048&w=is&k=20&c=ZNH2pW1GExbmWhMjQBrgm5_A7eyvRYqOA1m1wkB5nv0="
+              alt="Burger"
+              className="w-80 h-110"
+            />
+          </div>
+
+          <div className="carousel-item">
+            <img
+              src="https://media.istockphoto.com/id/1297761575/photo/black-sportscar-front-view-isolated-on-white.jpg?s=2048x2048&w=is&k=20&c=0qipGKmTpepCKkG5jsl32y3_WIW0BarmSNz_LpG1w8Y="
               className="w-80 h-110"
               alt="Burger"
             />
           </div>
           <div className="carousel-item">
             <img
-              src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fHRveXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600"
+              src="https://media.istockphoto.com/id/1286476807/photo/gray-sportscar-side-view-isolated-on-white.jpg?s=2048x2048&w=is&k=20&c=YRnb5S6xfe_nJEntH7w7nRzDOXvHmJpiFFhYeEDlgIo="
               className="w-80 h-110"
               alt="Burger"
             />
           </div>
           <div className="carousel-item">
             <img
-              src="https://images.unsplash.com/photo-1598541264502-84dc6aa2fb87?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fHRveXN8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600"
+              src="https://media.istockphoto.com/id/1191941530/photo/black-modern-car-3d-illustration.jpg?s=2048x2048&w=is&k=20&c=jOvP5eKDrJTNVgPVB9xyeRP_80GCebhg3NKA8XSwmPU="
               className="w-80 h-110"
               alt="Burger"
             />
           </div>
+
           <div className="carousel-item">
             <img
-              src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
+              src="https://media.istockphoto.com/id/490611277/photo/my-own-car-design.jpg?s=2048x2048&w=is&k=20&c=_0BBsID88CN9Bj3Q5fYLpZ9t_ZNVvz3Op1I7wCqu4aI="
               alt="Burger"
+              className="w-80 h-110"
             />
           </div>
           <div className="carousel-item">
             <img
-              src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
+              src="https://media.istockphoto.com/id/1297761575/photo/black-sportscar-front-view-isolated-on-white.jpg?s=2048x2048&w=is&k=20&c=0qipGKmTpepCKkG5jsl32y3_WIW0BarmSNz_LpG1w8Y="
               alt="Burger"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
-              alt="Burger"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp"
-              alt="Burger"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp"
-              alt="Burger"
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
-              alt="Burger"
+              className="w-80 h-110"
             />
           </div>
         </div>

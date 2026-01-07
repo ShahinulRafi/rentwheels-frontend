@@ -3,12 +3,14 @@ import { useParams } from "react-router";
 // import { toast } from "react-toastify";
 import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const CarDetails = () => {
   const { id } = useParams();
   const [car, setCar] = useState({});
-const {user} = useContext(AuthContext);
-console.log(user)
+  console.log("car id", id);
+  const { user } = useContext(AuthContext);
+  console.log(user);
   useEffect(() => {
     fetch(`http://localhost:5000/myBookings/${id}`)
       .then((res) => res.json())
@@ -21,7 +23,7 @@ console.log(user)
   //   toast.success("Thank you for trying the car!");
   // };
 
-  const handleBooking = (e) => {
+  const handleBooking = async (e) => {
     e.preventDefault();
     const form = e.target;
     const renterName = form.renterName.value;
@@ -37,18 +39,46 @@ console.log(user)
       renterPhone,
       carName,
       price,
-      date: new Date()
+      date: new Date(),
     };
 
     console.log("current booking", booking);
 
-    axios.post("http://localhost:5000/bookings", booking)
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((err) => console.error(err));
+    try {
+    // Try to book directly
+    const { data } = await axios.post("http://localhost:5000/bookings", booking);
 
+    // If backend inserted successfully
+    toast.success("Car booked successfully!");
+    console.log("Booking response:", data);
+  } catch (err) {
+    // If backend rejects duplicate booking or any error occurs
+    console.error(err);
+    toast.error(
+      err.response?.data?.error || "This car is already booked or something went wrong."
+    );
   }
+  
+    // try {
+    //   const { data: existingBooking } = await axios.get(
+    //     `http://localhost:5000/bookings?id=${id}`
+    //   );
+
+    //   if (existingBooking.length > 0) {
+    //     return toast.error("This car is already booked.");
+    //   }
+
+    //   axios
+    //     .post("http://localhost:5000/bookings", booking)
+    //     .then((res) => {
+    //       console.log(res.data);
+    //       toast.success("Car booked successfully!");
+    //     })
+    //     .catch((err) => console.error(err));
+    // } catch (err) {
+    //   console.error(err);
+    // }
+  };
   return (
     <div className="max-w-6xl mx-auto p-6">
       <title>Car Details - RentWheels</title>
@@ -125,35 +155,61 @@ console.log(user)
                   </button>
                 </form>
 
-                <form onSubmit={handleBooking}  className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+                <form
+                  onSubmit={handleBooking}
+                  className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
+                >
                   <legend className="fieldset-legend">Order Details</legend>
                   <label className="label">Car Name</label>
-                  <input name="carName" defaultValue={car?.name} readOnly type="text" className="input" placeholder="Car Name" />
+                  <input
+                    name="carName"
+                    defaultValue={car?.name}
+                    readOnly
+                    type="text"
+                    className="input"
+                    placeholder="Car Name"
+                  />
 
                   <label className="label">Renter Name</label>
                   <input
                     name="renterName"
-                  defaultValue={user.displayName}
+                    defaultValue={user.displayName}
                     type="text"
                     className="input"
                     placeholder="Renter Name"
                   />
 
                   <label className="label">Renter Email</label>
-                  <input name="renterEmail" defaultValue={user?.email} readOnly type="email" className="input" placeholder="Email" />
+                  <input
+                    name="renterEmail"
+                    defaultValue={user?.email}
+                    readOnly
+                    type="email"
+                    className="input"
+                    placeholder="Email"
+                  />
 
                   <label className="label">Price</label>
-                  <input name="price" defaultValue={car.price} readOnly type="number" className="input" placeholder="Price" />
+                  <input
+                    name="price"
+                    defaultValue={car.price}
+                    readOnly
+                    type="number"
+                    className="input"
+                    placeholder="Price"
+                  />
 
                   <label className="label">Phone</label>
                   <input
-                   name="renterPhone"
+                    name="renterPhone"
                     type="text"
                     className="input"
                     placeholder="Phone Number"
                   />
 
-                  <button type='submit' className="btn btn-primary">Submit</button>
+                  <button type="submit" className="btn btn-primary">
+                    Submit
+                  </button>
                 </form>
                 {/* <h3 className="font-bold text-lg">Rent this car</h3>
                 <p className="py-4">

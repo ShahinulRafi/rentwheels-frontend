@@ -20,7 +20,7 @@ const MyBookings = () => {
   console.log(myBookings);
 
   const handleDelete = (id ) => {
-    axios.delete(`http://localhost:5000/delete/${id}`)
+    axios.delete(`http://localhost:5000/delete/booking/${id}`)
     .then(res => {
       //update UI
       const remaining = myBookings.filter(booking => booking._id !== id);

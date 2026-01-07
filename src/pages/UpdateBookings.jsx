@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
-
+import { toast } from "react-toastify";
 const UpdateBookings = () => {
   const { user } = useContext(AuthContext);
   const { id } = useParams();
@@ -52,6 +52,7 @@ const UpdateBookings = () => {
       .put(`http://localhost:5000/update/${id}`, formData)
       .then((res) => {
         console.log(res.data);
+        toast.success("Booking updated successfully!");
         navigation("/myBookings");
       })
       .catch((err) => {
