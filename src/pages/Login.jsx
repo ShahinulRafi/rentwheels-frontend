@@ -1,24 +1,18 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import React, { useRef, useState } from "react";
-// import { auth } from "../firebase/firebase.init";
 import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import { use } from "react";
 import { toast } from "react-toastify";
 
-// const googleProvider = new GoogleAuthProvider();
-
 const Login = () => {
-  // const [user, setUser] = useState(null);
-  // const [error, setError] = useState("");
-  // const [success, setSuccess] = useState("");
   const emailRef = useRef();
   const [email, setEmail] = useState("");
   const { signInUser, signInWithGoogle } = use(AuthContext);
-  // const {signOutUser} = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   console.log("login location", location?.state);
+  
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
@@ -31,17 +25,6 @@ const Login = () => {
         toast.error(error.message);
       });
   };
-
-  // const handleSignOut = () => {
-  //   signOut(auth)
-  //     .then(() => {
-  //       console.log("sign out successful");
-  //       setUser(null);
-  //     })
-  //     .then((eror) => {
-  //       console.log(eror);
-  //     });
-  // };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -62,20 +45,6 @@ const Login = () => {
         // setError(error.message);
       });
 
-    // setError("");
-    // setSuccess("");
-
-    // signInWithEmailAndPassword(auth, email, password)
-    //   .then((result) => {
-    //     console.log(result.user);
-    //     toast.success("Signed in!");
-    //     // setSuccess("Login Successful");
-    //     navigate(location?.state || "/");
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     toast.error(error.message);
-    //   });
   };
 
   return (

@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import { auth } from "../firebase/firebase.init";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router";
@@ -10,7 +10,7 @@ const Register = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser } = use(AuthContext);
+  // const { createUser } = use(AuthContext);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -45,10 +45,10 @@ const Register = () => {
       return;
     }
 
-    createUser(email, password);
+    // createUser(email, password);
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        // console.log("New user created", result.user);
+        console.log("New user created", result.user);
         toast.success("Registration successful!");
 
         updateProfile(result.user, {
