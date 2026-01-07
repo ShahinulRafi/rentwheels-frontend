@@ -42,8 +42,9 @@ const MyListing = () => {
                 </label>
               </th>
               <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Category</th>
+              <th>Rent Price</th>
+              <th>Status</th>
               <th></th>
             </tr>
           </thead>
@@ -61,14 +62,14 @@ const MyListing = () => {
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
                         <img
-                          src={car?.imageURL}
+                          src={car?.imageUrl}
                           alt="Avatar Tailwind CSS Component"
                         />
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{car?.displayName}</div>
-                      <div className="text-sm opacity-50">{car?.location}</div>
+                      <div className="font-bold">{car?.name}</div>
+                      {/* <div className="text-sm opacity-50">{car?.location}</div> */}
                     </div>
                   </div>
                 </td>

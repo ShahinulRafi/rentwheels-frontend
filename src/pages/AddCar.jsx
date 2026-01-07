@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AddCar = () => {
   const { user } = useContext(AuthContext);
@@ -19,18 +20,21 @@ const AddCar = () => {
 
     const formData = {
         name,
+        providerName: user?.displayName,
         category,
         price,
         location,
         imageUrl,
         description,
-        email
+        email,
+        createdAt: new Date()
     }
 
     console.log(formData);
     axios.post('http://localhost:5000/cars', formData)
     .then(res=>{
         console.log(res.data);
+        toast.success("Car added successfully!");
     })
   };
   return (
