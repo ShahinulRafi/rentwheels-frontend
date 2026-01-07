@@ -7,6 +7,7 @@ import axios from "axios";
 const MyListing = () => {
   const [myListing, setMyListing] = useState([]);
   const { user } = useContext(AuthContext);
+  const [booking, setBooking] = useState(null);
 
   useEffect(() => {
     fetch(`http://localhost:5000/myListings?email=${user?.email}`)
@@ -14,6 +15,13 @@ const MyListing = () => {
       .then((data) => setMyListing(data))
       .catch((err) => console.error(err));
   }, [user?.email]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/bookings`)
+    .then(res => res.json())
+    .then(data => setBooking(data))
+    .catch(err => console.error(err));
+  }, [])
 
   console.log(myListing);
 
@@ -81,6 +89,15 @@ const MyListing = () => {
                   </span>
                 </td>
                 <td>{car?.price}</td>
+                <td>
+                  {
+                    booking.some(b => b.productId === car._id) ? (
+                      <span className="badge badge-success badge-sm">Booked</span>
+                    ) : (
+                      <span className="badge badge-warning badge-sm">Available</span>
+                    )
+                  }
+                </td>
                 <td className="flex gap-3">
                   <Link to={`/updateBookings/${car?._id}`}><button className="btn btn-primary btn-xs">Edit</button></Link>
                   <button onClick={() => handleDelete(car?._id)} className="btn btn-error btn-xs">Delete</button>
