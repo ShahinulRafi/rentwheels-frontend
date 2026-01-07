@@ -1,20 +1,63 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const Footer = () => {
   return (
     <footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10">
-      <nav className="grid grid-flow-col gap-4">
-        <a className="link link-hover">
-          <Link to="/">Home</Link>
-        </a>
-        <a className="link link-hover">
-          <Link to="/browsecars">Browse Cars</Link>
-        </a>
-        <a className="link link-hover">
-          <Link to="/mybookings">My Bookings</Link>
-        </a>
+      <nav>
+        <div>
+          <a className="font-semibold text-xl -mx-4 md:mx-1">
+            <NavLink to="/">RentWheels</NavLink>
+          </a>
+        </div>
+        <div className="grid grid-flow-col gap-4">
+          <a className="link link-hover">
+            <Link to="/">Home</Link>
+          </a>
+          <a className="link link-hover">
+            <Link to="/browsecars">Browse Cars</Link>
+          </a>
+          <a className="link link-hover">
+            <Link to="/mybookings">My Bookings</Link>
+          </a>
+        </div>
       </nav>
+
+      <div className="flex justify-between gap-20">
+        <div>
+          <h3 className="font-semibold">Contact Information</h3>{" "}
+          <p>
+            Stay connected with RentWheels for support, inquiries, or
+            partnerships.{" "}
+          </p>
+          Email: support@rentwheels.com
+          <br /> Phone: +880 1XXX-XXXXXX
+          <br />
+          Location: Dhaka, Bangladesh
+          <br />
+          Hours: 24/7 Customer Support
+        </div>
+
+        <div>
+          <h3 className="font-semibold">Terms & Conditions</h3>
+          By using RentWheels, you agree to the following:
+          <ol className="list-decimal ml-6 text-left">
+            <li>Rentals are subject to availability and provider approval</li>
+            <li>
+              Users must provide accurate personal and booking information
+            </li>
+            <li>
+              Rental prices, availability, and policies may change without
+              notice
+            </li>
+            <li>
+              RentWheels is not responsible for disputes between renters and
+              providers
+            </li>
+            <li>Misuse of the platform may result in account suspension</li>
+          </ol>
+        </div>
+      </div>
       <nav>
         <div className="grid grid-flow-col gap-4">
           <a>
@@ -54,7 +97,8 @@ const Footer = () => {
       </nav>
       <aside>
         <p>
-          Copyright © {new Date().getFullYear()} - All right reserved by RentWheels
+          Copyright © {new Date().getFullYear()} - All right reserved by
+          RentWheels
         </p>
       </aside>
     </footer>
