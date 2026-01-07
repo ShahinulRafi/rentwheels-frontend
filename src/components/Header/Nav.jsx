@@ -3,6 +3,13 @@ import { NavLink } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Nav = () => {
+  const { user, signOutUser } = use(AuthContext);
+  const handleSignOut = () => {
+    signOutUser()
+      .then()
+      .catch((error) => alert(error.message));
+  };
+
   const links = (
     <>
       <li>
@@ -10,7 +17,7 @@ const Nav = () => {
           <NavLink to="/">Home</NavLink>
         </a>
       </li>
-      
+
       <li>
         <a>
           <NavLink to="/browsecars">Browse Cars</NavLink>
@@ -21,25 +28,25 @@ const Nav = () => {
           <NavLink to="/addcar">Add Car</NavLink>
         </a>
       </li>
-      
+
       <li>
         <a>
           <NavLink to="/mybookings">My Bookings</NavLink>
         </a>
       </li>
-
       <li>
-        <NavLink to="/profile">Profile</NavLink>
+        <a>
+          <NavLink to="/mylistings">My Listings</NavLink>
+        </a>
       </li>
+
+      {user ? (
+        <li>
+          <NavLink to="/profile">Profile</NavLink>
+        </li>
+      ) : null}
     </>
   );
-
-  const { user, signOutUser } = use(AuthContext);
-  const handleSignOut = () => {
-    signOutUser()
-      .then()
-      .catch((error) => alert(error.message));
-  };
 
   return (
     <div className="">
@@ -88,9 +95,9 @@ const Nav = () => {
                 <div className="dropdown">
                   <div tabIndex={0} role="button" className="btn m-1">
                     <img
-                      className="w-4 rounded"
+                      className="w-10 rounded"
                       title={user.displayName}
-                      src={user.photoUrl}
+                      src={user.photoURL}
                       alt=""
                     />
                   </div>
