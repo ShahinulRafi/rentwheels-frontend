@@ -13,10 +13,12 @@ import MyBookings from "../pages/MyBookings";
 import CarDetails from "../pages/CarDetails";
 import UpdateBookings from "../pages/UpdateBookings";
 import MyListing from "../pages/MyListing";
+import MainLayout from "../layouts/MainLayout";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App></App>,
+    element: <MainLayout></MainLayout>,
+    errorElement: <Error></Error>,
     children: [
       {
         index: true,
@@ -76,11 +78,7 @@ const router = createBrowserRouter([
       {
         path: "/updateBookings/:id",
         element: <UpdateBookings></UpdateBookings>,
-      },
-      {
-        path: "/*",
-        element: <Error></Error>,
-      },
+      }
     ],
   },
 ]);
