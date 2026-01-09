@@ -60,9 +60,7 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, ""); // remove
 
                 <td>{car?.price}</td>
                 <td className="flex gap-3">
-                  <Link to={`/updateBookings/${car?._id}`}>
-                    <button className="btn btn-primary btn-xs">Edit</button>
-                  </Link>
+                  
                   <button
                     onClick={() => handleDelete(car?._id)}
                     className="btn btn-error btn-xs"
