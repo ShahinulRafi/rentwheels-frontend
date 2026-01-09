@@ -19,7 +19,7 @@ const BrowseCars = () => {
       <h2 className="text-3xl font-bold text-center my-8">
         Browse Different Cars
       </h2>
-      <div>
+      <div className="flex justify-between gap-5 items-center mb-4">
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Category
         </label>

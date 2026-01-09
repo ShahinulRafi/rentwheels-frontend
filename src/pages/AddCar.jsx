@@ -39,7 +39,7 @@ const AddCar = () => {
   };
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
-      <div className="w-full max-w-3xl bg-white rounded-xl shadow-md p-6 md:p-8">
+      <div className="w-full max-w-3xl bg-white rounded-xl shadow-md p-6 m-4 md:p-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">Add Car</h2>
 
         <form

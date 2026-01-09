@@ -29,36 +29,41 @@ const CarDetails = () => {
     const renterName = form.renterName.value;
     const renterEmail = form.renterEmail.value;
     const renterPhone = form.renterPhone.value;
-    const carName = form.carName.value;
-    const price = form.price.value;
+    // const carName = form.carName.value;
+
+    // const price = form.price.value;
 
     const booking = {
       productId: id,
       renterName,
       renterEmail,
       renterPhone,
-      carName,
-      price,
+      carName: car.name,
+      price: car.price,
       date: new Date(),
     };
 
     console.log("current booking", booking);
 
     try {
-    // Try to book directly
-    const { data } = await axios.post("http://localhost:5000/bookings", booking);
+      const { data } = await axios.post(
+        "http://localhost:5000/bookings",
+        booking
+      );
+      if (data.success) {
+        setCar(data);
+        toast.success(data.message); // Booking succeeded
+      } else {
+        toast.error(data.message); // Just in case
+      }
+    } catch (err) {
+      if (err.response?.status === 409) {
+        toast.error(err.response.data.message); // Car already booked
+      } else {
+        toast.error("Something went wrong. Try again.");
+      }
+    }
 
-    // If backend inserted successfully
-    toast.success("Car booked successfully!");
-    console.log("Booking response:", data);
-  } catch (err) {
-    // If backend rejects duplicate booking or any error occurs
-    console.error(err);
-    toast.error(
-      err.response?.data?.error || "This car is already booked or something went wrong."
-    );
-  }
-  
     // try {
     //   const { data: existingBooking } = await axios.get(
     //     `http://localhost:5000/bookings?id=${id}`
@@ -88,7 +93,7 @@ const CarDetails = () => {
         {/* Image */}
         <div className="md:w-1/2 flex justify-center">
           <img
-            src={car.pictureUrl}
+            src={car.imageUrl}
             alt={car.name}
             className="rounded-xl shadow-lg max-h-[400px] object-cover"
           />
@@ -97,27 +102,27 @@ const CarDetails = () => {
         {/* Info Card */}
         <div className="md:w-1/2 bg-white p-6 rounded-xl shadow-lg space-y-4">
           <p className="text-gray-600">
-            <strong>Seller:</strong> {car.name}
+            <strong>Renter Name:</strong> {car.providerName}
           </p>
           <p className="text-gray-600">
             <strong>Email:</strong> {car.email}
           </p>
           <p className="text-gray-600">
+            <strong>Model:</strong> {car.category}
+          </p>
+          <p className="text-gray-600">
+            <strong>Location:</strong> {car.location}
+          </p>
+          <p className="text-gray-600">
             <strong>Price:</strong> ${car.price}
           </p>
-          <p className="text-gray-600">
-            <strong>Rating:</strong> {car.rating} ⭐
-          </p>
-          <p className="text-gray-600">
-            <strong>Available Quantity:</strong> {car.availableQuantity}
-          </p>
+          
           <p className="mt-4 text-gray-800">
             <strong>Description:</strong> {car.description}
           </p>
 
           {/* Try Now Form */}
           <div className="mt-6 p-4 bg-gray-50 rounded-lg shadow-inner">
-            <h2 className="text-2xl font-semibold mb-4">Try This car</h2>
             {/* <form className="flex flex-col gap-4" onSubmit={handleTryNow}>
               <input
                 type="text"
@@ -141,10 +146,10 @@ const CarDetails = () => {
 
             {/* You can open the modal using document.getElementById('ID').showModal() method */}
             <button
-              className="btn"
+              className="btn btn-secondary w-full"
               onClick={() => document.getElementById("my_modal_3").showModal()}
             >
-              open modal
+              Book Now
             </button>
             <dialog id="my_modal_3" className="modal">
               <div className="modal-box">
@@ -157,7 +162,7 @@ const CarDetails = () => {
 
                 <form
                   onSubmit={handleBooking}
-                  className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
+                  className="fieldset bg-base-200 border-base-300 rounded-box w-xs mx-auto border p-4"
                 >
                   <legend className="fieldset-legend">Order Details</legend>
                   <label className="label">Car Name</label>

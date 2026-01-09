@@ -11,7 +11,7 @@ const MyBookings = () => {
   useEffect(() => {
     if(!user?.email) return;
 
-    fetch(`http://localhost:5000/bookings?email=${user?.email}`)
+    fetch(`http://localhost:5000/mybookings?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyBookings(data))
       .catch((err) => console.error(err));

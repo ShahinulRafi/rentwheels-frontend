@@ -50,11 +50,11 @@ const Footer = () => {
               Rental prices, availability, and policies may change without
               notice
             </li>
-            <li>
+            {/* <li>
               RentWheels is not responsible for disputes between renters and
               providers
-            </li>
-            <li>Misuse of the platform may result in account suspension</li>
+            </li> */}
+            {/* <li>Misuse of the platform may result in account suspension</li> */}
           </ol>
         </div>
       </div>
