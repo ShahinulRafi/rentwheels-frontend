@@ -7,7 +7,7 @@ import axios from "axios";
 const MyBookings = () => {
   const [myBookings, setMyBookings] = useState([]);
   const { user } = useContext(AuthContext);
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, ""); // remove trailing slash;
 
   useEffect(() => {
     if (!user?.email) return;

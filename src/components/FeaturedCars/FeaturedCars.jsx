@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router";
 import CarCard from "./CarCard";
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, ""); // remove trailing slash;
 
 const FeaturedCars = () => {
   const [popular, setPopular] = useState([]);

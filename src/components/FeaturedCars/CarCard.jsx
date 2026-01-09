@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { CiStar } from "react-icons/ci";
 import { Link } from "react-router";
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, ""); // remove trailing slash;
 
 const CarCard = ({ car }) => {
   const [isBooked, setIsBooked] = useState(false);

@@ -3,7 +3,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import { toast } from "react-toastify";
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, ""); // remove trailing slash;
 
 const UpdateBookings = () => {
   const { user } = useContext(AuthContext);

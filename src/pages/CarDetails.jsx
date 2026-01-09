@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
 import { toast } from "react-toastify";
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL.replace(/\/$/, ""); // remove trailing slash;
 
 const CarDetails = () => {
   const { id } = useParams();
