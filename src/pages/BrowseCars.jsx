@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CarCard from "../components/FeaturedCars/CarCard";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const BrowseCars = () => {
   const [popular, setPopular] = useState([]);
   const [category, setCategory] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/services?category=${category}`)
+    fetch(`${BASE_URL}/services?category=${category}`)
       .then((res) => res.json())
       .then((data) => {
         setPopular(data);

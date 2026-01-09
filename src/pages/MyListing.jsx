@@ -3,6 +3,7 @@ import CarCard from "../components/FeaturedCars/CarCard";
 import { AuthContext } from "../contexts/AuthContext";
 import { Link } from "react-router";
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const MyListing = () => {
   const [myListing, setMyListing] = useState([]);
@@ -11,7 +12,7 @@ const MyListing = () => {
 
   useEffect(() => {
     if(!user?.email) return;
-    fetch(`http://localhost:5000/myListings?email=${user?.email}`)
+    fetch(`${BASE_URL}/myListings?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyListing(data))
       .catch((err) => console.error(err));
@@ -25,7 +26,7 @@ const MyListing = () => {
 
     const fetchBookings = async() => {
       try{
-        const {data} = await axios.get(`http://localhost:5000/bookingscheck`);
+        const {data} = await axios.get(`${BASE_URL}/bookingscheck`);
         setBooking(data);
       }
       catch(err){
@@ -39,7 +40,7 @@ const MyListing = () => {
   console.log(myListing);
 
   const handleDelete = (id ) => {
-    axios.delete(`http://localhost:5000/delete/${id}`)
+    axios.delete(`${BASE_URL}/delete/${id}`)
     .then(res => {
       //update UI
       const remaining = myListing.filter(booking => booking._id !== id);

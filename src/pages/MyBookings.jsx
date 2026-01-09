@@ -7,21 +7,22 @@ import axios from "axios";
 const MyBookings = () => {
   const [myBookings, setMyBookings] = useState([]);
   const { user } = useContext(AuthContext);
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:5000/mybookings?email=${user?.email}`)
+    fetch(`${BASE_URL}/mybookings?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyBookings(data))
       .catch((err) => console.error(err));
-  }, [user?.email]);
+  }, [BASE_URL, user?.email]);
 
   console.log(myBookings);
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:5000/delete/booking/${id}`)
+      .delete(`${BASE_URL}/delete/booking/${id}`)
       .then((res) => {
         //update UI
         const remaining = myBookings.filter((booking) => booking._id !== id);

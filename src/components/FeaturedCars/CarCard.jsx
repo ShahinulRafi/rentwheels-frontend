@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { CiStar } from "react-icons/ci";
 import { Link } from "react-router";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const CarCard = ({ car }) => {
   const [isBooked, setIsBooked] = useState(false);
@@ -12,7 +13,7 @@ const CarCard = ({ car }) => {
     const checkBooking = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/bookingscheck?id=${car._id}`
+          `${BASE_URL}/bookingscheck?id=${car._id}`
         );
         setIsBooked(data.length > 0);
       } catch (error) {

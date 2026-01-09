@@ -4,7 +4,7 @@
 
 **RentWheels** is an interactive web application designed to showcase and rent cars for users. The platform allows users to browse available cars, view detailed information, and explore different car categories. This project demonstrates modern web development techniques using React and Tailwind CSS.
 
-**Live URL:** [https://rentwheels-shahinul.netlify.app/]
+**Live URL:** [https://rentwheels-frontend.netlify.app/]
 
 ---
 
@@ -41,7 +41,7 @@ The purpose of this project is to provide a responsive, user-friendly online pla
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/rentwheels.git
+   git clone https://github.com/ShahinulRafi/rentwheels-frontend
 2. Navigate to the project directory:
 cd rentwheels
 

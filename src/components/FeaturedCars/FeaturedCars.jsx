@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router";
 import CarCard from "./CarCard";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const FeaturedCars = () => {
   const [popular, setPopular] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/featured")
+    fetch(`${BASE_URL}/featured`)
       .then((res) => res.json())
       .then((data) => {
         setPopular(data);

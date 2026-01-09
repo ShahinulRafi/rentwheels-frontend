@@ -3,6 +3,8 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import { toast } from "react-toastify";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const UpdateBookings = () => {
   const { user } = useContext(AuthContext);
   const { id } = useParams();
@@ -11,7 +13,7 @@ const UpdateBookings = () => {
   const [category, setCategory] = useState(booking?.category);
   const navigation = useNavigate();
   useEffect(() => {
-    axios.get(`http://localhost:5000/myBookings/${id}`).then((res) => {
+    axios.get(`${BASE_URL}/myBookings/${id}`).then((res) => {
       setBooking(res.data); // asios e data property te response thake
       setCategory(res.data.category);
     });
@@ -49,7 +51,7 @@ const UpdateBookings = () => {
     };
 
     axios
-      .put(`http://localhost:5000/update/${id}`, formData)
+      .put(`${BASE_URL}/update/${id}`, formData)
       .then((res) => {
         console.log(res.data);
         toast.success("Booking updated successfully!");

@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const AddCar = () => {
   const { user } = useContext(AuthContext);
@@ -31,7 +32,7 @@ const AddCar = () => {
     }
 
     console.log(formData);
-    axios.post('http://localhost:5000/cars', formData)
+    axios.post(`${BASE_URL}/cars`, formData)
     .then(res=>{
         console.log(res.data);
         toast.success("Car added successfully!");

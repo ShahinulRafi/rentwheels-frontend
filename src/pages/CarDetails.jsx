@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const CarDetails = () => {
   const { id } = useParams();
@@ -12,7 +13,7 @@ const CarDetails = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
   useEffect(() => {
-    fetch(`http://localhost:5000/myBookings/${id}`)
+    fetch(`${BASE_URL}/myBookings/${id}`)
       .then((res) => res.json())
       .then((data) => setCar(data));
   }, [id]);
@@ -47,7 +48,7 @@ const CarDetails = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/bookings",
+        `${BASE_URL}/bookings`,
         booking
       );
       if (data.success) {
