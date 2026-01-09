@@ -29,7 +29,7 @@ const FeaturedCars = () => {
           ))}
         </div>
         <div className="flex justify-center mt-10">
-          <Link className="text-center items-center" to="/allCars">
+          <Link className="text-center items-center" to="/browsecars">
             <button className="btn btn-secondary">All Cars</button>
           </Link>
         </div>

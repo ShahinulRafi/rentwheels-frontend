@@ -91,7 +91,7 @@ const Nav = () => {
           </div>
           <div className="navbar-end">
             {user ? (
-              <div className="flex gap-2 bg-blue-400 justify-between items-center">
+              <div className="flex gap-2 justify-between items-center">
                 <div className="dropdown">
                   <div tabIndex={0} role="button" className="btn m-1">
                     <img
@@ -103,7 +103,7 @@ const Nav = () => {
                   </div>
                   <ul
                     tabIndex="-1"
-                    className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+                    className="dropdown-content menu bg-base-100 rounded-box -ml-12 z-1 w-40 p-2 shadow-sm"
                   >
                     <li>
                       <a>{user?.displayName}</a>

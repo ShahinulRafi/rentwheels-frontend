@@ -7,9 +7,10 @@ import axios from "axios";
 const MyListing = () => {
   const [myListing, setMyListing] = useState([]);
   const { user } = useContext(AuthContext);
-  const [booking, setBooking] = useState(null);
+  const [booking, setBooking] = useState([]);
 
   useEffect(() => {
+    if(!user?.email) return;
     fetch(`http://localhost:5000/myListings?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyListing(data))
@@ -17,10 +18,22 @@ const MyListing = () => {
   }, [user?.email]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/bookings`)
-    .then(res => res.json())
-    .then(data => setBooking(data))
-    .catch(err => console.error(err));
+    // fetch(`http://localhost:5000/bookingscheck`)
+    // .then(res => res.json())
+    // .then(data => setBooking(data))
+    // .catch(err => console.error(err));
+
+    const fetchBookings = async() => {
+      try{
+        const {data} = await axios.get(`http://localhost:5000/bookingscheck`);
+        setBooking(data);
+      }
+      catch(err){
+        console.error(err);
+      }
+    };
+
+    fetchBookings();
   }, [])
 
   console.log(myListing);
@@ -44,11 +57,7 @@ const MyListing = () => {
           {/* head */}
           <thead>
             <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
+              
               <th>Name</th>
               <th>Category</th>
               <th>Rent Price</th>
@@ -60,11 +69,7 @@ const MyListing = () => {
             {/* row 1 */}
             {myListing.map((car) => (
               <tr>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
+               
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -91,14 +96,14 @@ const MyListing = () => {
                 <td>{car?.price}</td>
                 <td>
                   {
-                    booking.some(b => b.productId === car._id) ? (
+                    booking?.some(b => b.productId === car._id) ? (
                       <span className="badge badge-success badge-sm">Booked</span>
                     ) : (
                       <span className="badge badge-warning badge-sm">Available</span>
                     )
                   }
                 </td>
-                <td className="flex gap-3">
+                <td className="flex items-center mt-3 gap-3">
                   <Link to={`/updateBookings/${car?._id}`}><button className="btn btn-primary btn-xs">Edit</button></Link>
                   <button onClick={() => handleDelete(car?._id)} className="btn btn-error btn-xs">Delete</button>
                 </td>
